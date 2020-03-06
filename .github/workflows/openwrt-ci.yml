@@ -65,8 +65,9 @@ jobs:
           cd package
           mkdir openwrt-packages
           cd openwrt-packages
-          git clone https://github.com/openwrt-develop/luci-theme-atmaterial.git
           git clone https://github.com/rosywrt/luci-theme-rosy.git
+          # git clone https://github.com/openwrt-develop/luci-theme-atmaterial.git
+
       - name: 更新和安装源-Update feeds
         run: |
           ./scripts/feeds update -a
@@ -137,7 +138,6 @@ jobs:
           CONFIG_PACKAGE_kmod-usb3=y
           EOF
           # 常用LuCI插件选择:
-          cat >> .config <<EOF
           CONFIG_PACKAGE_luci-app-accesscontrol=y
           # CONFIG_PACKAGE_luci-app-acme is not set
           # CONFIG_PACKAGE_luci-app-adblock is not set
@@ -208,7 +208,6 @@ jobs:
           # CONFIG_PACKAGE_luci-app-pagekitec is not set
           # CONFIG_PACKAGE_luci-app-polipo is not set
           # CONFIG_PACKAGE_luci-app-pppoe-relay is not set
-          # CONFIG_PACKAGE_luci-app-pptp-server is not set
           # CONFIG_PACKAGE_luci-app-privoxy is not set
           # CONFIG_PACKAGE_luci-app-qbittorrent is not set
           # CONFIG_PACKAGE_luci-app-qos is not set
@@ -217,6 +216,7 @@ jobs:
           # CONFIG_PACKAGE_luci-app-rp-pppoe-server is not set
           CONFIG_PACKAGE_luci-app-samba=y
           # CONFIG_PACKAGE_luci-app-samba4 is not set
+          CONFIG_PACKAGE_luci-app-serverchan=y
           # CONFIG_PACKAGE_luci-app-shadowsocks-libev is not set
           # CONFIG_PACKAGE_luci-app-shairplay is not set
           # CONFIG_PACKAGE_luci-app-siitwizard is not set
@@ -231,9 +231,10 @@ jobs:
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray_plugin=y
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan=y
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Redsocks2=y
           # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Kcptun is not set
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Server=y
-          # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Socks is not set
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_DNS2SOCKS=y
           # CONFIG_PACKAGE_luci-app-ssrserver-python is not set
           # CONFIG_PACKAGE_luci-app-statistics is not set
           CONFIG_PACKAGE_luci-app-syncdial=y
@@ -244,8 +245,8 @@ jobs:
           # CONFIG_PACKAGE_luci-app-udpxy is not set
           # CONFIG_PACKAGE_luci-app-uhttpd is not set
           CONFIG_PACKAGE_luci-app-unblockmusic=y
-          CONFIG_PACKAGE_luci-app-unblockneteasemusic-go=y
-          CONFIG_PACKAGE_luci-app-unblockneteasemusic-mini=y
+          CONFIG_UnblockNeteaseMusic_Go=y
+          CONFIG_UnblockNeteaseMusic_NodeJS=y
           # CONFIG_PACKAGE_luci-app-unbound is not set
           CONFIG_PACKAGE_luci-app-upnp=y
           CONFIG_PACKAGE_luci-app-usb-printer=y
@@ -268,7 +269,6 @@ jobs:
           cat >> .config <<EOF
           # CONFIG_PACKAGE_luci-theme-argon is not set
           # CONFIG_PACKAGE_luci-theme-netgear is not set
-          CONFIG_PACKAGE_luci-theme-atmaterial=y
           CONFIG_PACKAGE_luci-theme-rosy=y
           EOF
           # 常用软件包:
